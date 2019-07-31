@@ -1,7 +1,9 @@
+import csv
+import sys
 from collections import namedtuple
 from datetime import date, timedelta
 
-
+from dateutil import parser
 from dateutil.relativedelta import relativedelta
 from ics import Calendar, Event
 from ics.alarm import DisplayAlarm
@@ -54,3 +56,8 @@ def create_ics(birthday=None, add_alarms=False, schedule_file='./vaccines.csv', 
             c.events.add(e)
     with open(ical_file, 'w') as f:
         f.writelines(c)
+
+
+if __name__ == '__main__':
+    birthday = sys.argv[1]
+    create_ics(birthday)
